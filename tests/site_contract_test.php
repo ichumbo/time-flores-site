@@ -29,7 +29,7 @@ assert_contract(str_contains($html, '<title>Léo Nery — Nutrição Esportiva</
 assert_contract($xpath->query('//link[@rel="icon" and @href="/assets/images/favicon.png" and @type="image/png"]')->length === 1, 'PNG favicon is active');
 $brandLogos = $xpath->query('//img[contains(concat(" ", normalize-space(@class), " "), " brand-logo ") and @src="/assets/images/logo.png"]');
 assert_contract($brandLogos !== false && $brandLogos->length === 2, 'logo appears in header and footer');
-assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 3, 'three remaining provisional media slots in athletes use the new identity cover');
+assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 0, 'all provisional media slots are replaced by real photographs and artwork');
 assert_contract(str_contains($css, '[data-brand-placeholder]::before'), 'brand placeholder cover is styled');
 assert_contract(str_contains($css, "background-image: url('/assets/images/logo.png')"), 'full logo is used in large placeholders');
 assert_contract(str_contains($css, "background-image: url('/assets/images/favicon.png')"), 'brand mark is used in compact placeholders');
@@ -43,7 +43,7 @@ assert_contract((bool) preg_match('/\.hero-outline\s*\{[^}]*right:\s*16px;\s*bot
 $aboutImage = $xpath->query('//*[@id="sobre"]//*[contains(concat(" ", normalize-space(@class), " "), " image-frame ") and not(@data-brand-placeholder)]/img[@src="/assets/images/sobre-1.jpg"]');
 assert_contract($aboutImage !== false && $aboutImage->length === 1, 'about section uses the supplied athlete photograph');
 assert_contract(is_file($root . '/public/assets/images/sobre-1.jpg'), 'about photograph asset exists');
-assert_contract(str_contains($html, 'AJUDO VOCÊ A') && str_contains($html, 'Você fala diretamente comigo durante todo processo!'), 'about section uses the requested headline and copy');
+assert_contract(str_contains($html, 'AJUDO VOCÊ A') && (bool) preg_match('/Você\s+fala\s+diretamente\s+comigo\s+durante\s+todo\s+processo!/u', $html), 'about section uses the requested headline and copy');
 $marqueeSpans = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " marquee-track ")]/span');
 assert_contract($marqueeSpans !== false && $marqueeSpans->length >= 6 && $marqueeSpans->length % 2 === 0, 'marquee repeats enough even copies for seamless infinite loop on wide screens');
 $marqueeSpans = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " marquee-track ")]/span');
@@ -89,14 +89,15 @@ assert_contract(str_contains($css, '.section .method-big-figure'), 'methodology 
 // Break caught: results section loses the reference layout, category jump buttons, or carousel controls.
 $resultCards = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ")]');
 $commonCards = $xpath->query('//*[@id="res-comuns"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(@data-brand-placeholder)]/img');
-$athleteCards = $xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(contains(concat(" ", normalize-space(@class), " "), " is-square "))]/img[@width="800" and @height="1036"]');
+$athleteCards = $xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(@data-brand-placeholder)]/img');
 $resultJumpBtns = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-jump-btn ")]');
 $resultArrows = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-arrow ")]');
-assert_contract($resultCards !== false && $resultCards->length === 8, 'eight result cards across common people and athletes');
+assert_contract($resultCards !== false && $resultCards->length === 10, 'ten result cards across common people and athletes');
 assert_contract($commonCards !== false && $commonCards->length === 5, 'five artwork result cards in #res-comuns');
-assert_contract($athleteCards !== false && $athleteCards->length === 3, 'three 800x1036 artwork result cards in #res-atletas');
+assert_contract($athleteCards !== false && $athleteCards->length === 5, 'five photo result cards in #res-atletas');
 foreach (range(1, 5) as $i) {
     assert_contract(is_file($root . "/public/assets/images/comum-{$i}.jpg"), "common result image comum-{$i}.jpg exists");
+    assert_contract(is_file($root . "/public/assets/images/atleta-{$i}.jpg"), "athlete result image atleta-{$i}.jpg exists");
 }
 assert_contract($xpath->query('//*[@id="resultados"]//figcaption')->length === 0, 'result cards do not cover the bottom of the artwork with a figcaption bar');
 assert_contract($xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-art-preview ")]')->length === 0, 'athletes section does not use before-and-after split preview');
