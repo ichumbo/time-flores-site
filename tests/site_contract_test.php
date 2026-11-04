@@ -144,6 +144,10 @@ $footerInstagram = $xpath->query('//footer//a[@href="https://www.instagram.com/n
 $footerIconButtons = $xpath->query('//footer//a[contains(concat(" ", normalize-space(@class), " "), " footer-icon-btn ")]');
 assert_contract($footerInstagram !== false && $footerInstagram->length === 1, 'footer contains official Instagram link');
 assert_contract($footerIconButtons !== false && $footerIconButtons->length === 2 && trim($footerInstagram->item(0)->textContent) === '', 'footer social links are minimalist icon-only buttons');
+$devstepCredit = $xpath->query('//footer//a[contains(concat(" ", normalize-space(@class), " "), " devstep-credit ")]');
+assert_contract($devstepCredit !== false && $devstepCredit->length === 1, 'footer contains devstep creator credit button');
+assert_contract(str_contains(mb_strtolower($html, 'UTF-8'), 'devstep') && str_contains(strtolower($css), '#7448ff'), 'devstep button uses #7448ff purple background and devstep branding');
+assert_contract(is_file($root . '/public/assets/images/devstep-logo.png'), 'devstep logo asset exists');
 
 // Break caught: generic diagonal arrows return or WhatsApp CTAs lose their distinct chat cue.
 assert_contract(!str_contains($html . $privacy, '↗'), 'diagonal arrow glyphs are absent');
