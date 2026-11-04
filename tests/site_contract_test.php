@@ -158,6 +158,7 @@ foreach (['#050B18', '#091529', '#0D1D36', '#087CFF', '#249DFF', '#64BCFF', '#24
     assert_contract(str_contains(strtoupper($css), strtoupper($color)), "palette contains {$color}");
 }
 assert_contract(!preg_match('/(?:linear|radial)-gradient\s*\(/i', $css), 'design has no gradients');
+assert_contract(str_contains($css, '.section::before') && str_contains($css, '.section::after') && str_contains($css, 'filter: blur('), 'sections have illuminated blue ambient background glows');
 
 // Break caught: responsive/accessible component styling is accidentally removed.
 assert_contract((bool) preg_match('/\.plans-grid\s*\{[^}]*grid-template-columns\s*:\s*repeat\(5\s*,\s*1fr\)/s', $css), 'wide plans use five columns');
