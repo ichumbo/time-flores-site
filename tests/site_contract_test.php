@@ -39,6 +39,7 @@ $heroImage = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " 
 assert_contract($heroImage !== false && $heroImage->length === 1, 'hero uses the supplied athlete photograph');
 assert_contract(is_file($root . '/public/assets/images/hero-1.png'), 'hero photograph asset exists');
 assert_contract(!str_contains($css, '.hero-visual img'), 'hero photograph is not forced into grayscale');
+assert_contract(!preg_match('/\.hero-outline\s*\{[^}]*left\s*:\s*-/i', $css), 'hero PERFORMANCE outline is not clipped on the left');
 $marqueeSpans = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " marquee-track ")]/span');
 assert_contract($marqueeSpans !== false && $marqueeSpans->length >= 6 && $marqueeSpans->length % 2 === 0, 'marquee repeats enough even copies for seamless infinite loop on wide screens');
 

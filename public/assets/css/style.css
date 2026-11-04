@@ -88,7 +88,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-image-badge { position: absolute; top: 28px; right: 26px; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; text-align: right; }
 .hero-image-badge span { color: var(--blue-light); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
 .hero-image-badge strong { font: 800 23px/.9 var(--font-title); }
-.hero-outline { position: absolute; bottom: -18px; left: -66px; color: transparent; font: 900 clamp(76px, 8vw, 124px)/1 var(--font-title); letter-spacing: .02em; -webkit-text-stroke: 1px var(--blue-light); pointer-events: none; }
+.hero-outline { position: absolute; right: 16px; bottom: 8px; left: 16px; color: transparent; font: 900 clamp(52px, 6.2vw, 96px)/1 var(--font-title); letter-spacing: .02em; text-align: center; white-space: nowrap; -webkit-text-stroke: 1px var(--blue-light); pointer-events: none; }
 .scroll-hint { position: absolute; bottom: 18px; left: max(calc((100vw - var(--width))/2), 40px); display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 10px; font-weight: 700; letter-spacing: .13em; }
 .scroll-icon { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--blue-light); }
 
@@ -406,7 +406,7 @@ h2, h3, p { margin-top: 0; }
   .hero-copy { padding: 74px 0 50px; }
   .hero h1 { font-size: clamp(76px, 15vw, 128px); }
   .hero-visual { min-height: 0; height: 590px; }
-  .hero-outline { bottom: -5px; left: 0; }
+  .hero-outline { right: 12px; bottom: 6px; left: 12px; }
   .scroll-hint { display: none; }
   .section { padding: 84px 0; }
   .about-grid, .plans-heading-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 46px; }
@@ -436,7 +436,7 @@ h2, h3, p { margin-top: 0; }
   .btn { min-height: 54px; padding: 15px 17px; gap: 16px; font-size: 10px; }
   .hero-footnote { margin-top: 38px; }
   .hero-visual { height: 455px; }
-  .hero-outline { font-size: 63px; }
+  .hero-outline { font-size: clamp(44px, 13.5vw, 60px); }
   .hero-image-badge strong { font-size: 19px; }
   .marquee { height: 62px; }
   .marquee-track span { font-size: 36px; }
