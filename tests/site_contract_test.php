@@ -29,7 +29,7 @@ assert_contract(str_contains($html, '<title>Léo Nery — Nutrição Esportiva</
 assert_contract($xpath->query('//link[@rel="icon" and @href="/assets/images/favicon.png" and @type="image/png"]')->length === 1, 'PNG favicon is active');
 $brandLogos = $xpath->query('//img[contains(concat(" ", normalize-space(@class), " "), " brand-logo ") and @src="/assets/images/logo.png"]');
 assert_contract($brandLogos !== false && $brandLogos->length === 2, 'logo appears in header and footer');
-assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 6, 'six remaining provisional media slots use the new identity cover');
+assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 3, 'three remaining provisional media slots in athletes use the new identity cover');
 assert_contract(str_contains($css, '[data-brand-placeholder]::before'), 'brand placeholder cover is styled');
 assert_contract(str_contains($css, "background-image: url('/assets/images/logo.png')"), 'full logo is used in large placeholders');
 assert_contract(str_contains($css, "background-image: url('/assets/images/favicon.png')"), 'brand mark is used in compact placeholders');
@@ -88,13 +88,16 @@ assert_contract(str_contains($css, '.section .method-big-figure'), 'methodology 
 
 // Break caught: results section loses the reference layout, category jump buttons, or carousel controls.
 $resultCards = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ")]');
-$commonCards = $xpath->query('//*[@id="res-comuns"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(contains(concat(" ", normalize-space(@class), " "), " is-square "))]/img[@width="800" and @height="1036"]');
+$commonCards = $xpath->query('//*[@id="res-comuns"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(@data-brand-placeholder)]/img');
 $athleteCards = $xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(contains(concat(" ", normalize-space(@class), " "), " is-square "))]/img[@width="800" and @height="1036"]');
 $resultJumpBtns = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-jump-btn ")]');
 $resultArrows = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-arrow ")]');
-assert_contract($resultCards !== false && $resultCards->length === 6, 'six result cards across common people and athletes');
-assert_contract($commonCards !== false && $commonCards->length === 3, 'three 800x1036 artwork result cards in #res-comuns');
+assert_contract($resultCards !== false && $resultCards->length === 8, 'eight result cards across common people and athletes');
+assert_contract($commonCards !== false && $commonCards->length === 5, 'five artwork result cards in #res-comuns');
 assert_contract($athleteCards !== false && $athleteCards->length === 3, 'three 800x1036 artwork result cards in #res-atletas');
+foreach (range(1, 5) as $i) {
+    assert_contract(is_file($root . "/public/assets/images/comum-{$i}.jpg"), "common result image comum-{$i}.jpg exists");
+}
 assert_contract($xpath->query('//*[@id="resultados"]//figcaption')->length === 0, 'result cards do not cover the bottom of the artwork with a figcaption bar');
 assert_contract($resultJumpBtns !== false && $resultJumpBtns->length === 2, 'two results category buttons (Pessoas comuns and Atletas)');
 assert_contract($resultArrows !== false && $resultArrows->length === 4, 'results carousel prev and next arrow buttons for both blocks');

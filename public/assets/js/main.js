@@ -222,32 +222,53 @@
       const prevBtn = $('[data-results-prev]', group);
       const nextBtn = $('[data-results-next]', group);
       const bar = $('[data-results-bar]', group);
+      const track = $('.results-grid', group);
       const cards = $$('.result-card', group);
       let index = 0;
 
+      function maxStart() {
+        const perView = window.innerWidth <= 600 ? 1 : window.innerWidth <= 850 ? 2 : 3;
+        return Math.max(0, cards.length - perView);
+      }
+
       function updateGroupView() {
-        const total = Math.max(1, cards.length);
+        const maxIndex = maxStart();
+        index = Math.max(0, Math.min(maxIndex, index));
         if (bar) {
-          const width = 100 / total;
+          const totalSteps = maxIndex + 1;
+          const width = 100 / totalSteps;
           bar.style.width = `${width}%`;
           bar.style.left = `${index * width}%`;
         }
         if (prevBtn) prevBtn.disabled = index <= 0;
-        if (nextBtn) nextBtn.disabled = index >= total - 1;
+        if (nextBtn) nextBtn.disabled = index >= maxIndex;
       }
 
-      if (prevBtn && nextBtn && cards.length) {
+      function scrollToCard(targetIndex) {
+        const maxIndex = maxStart();
+        index = Math.max(0, Math.min(maxIndex, targetIndex));
         updateGroupView();
-        prevBtn.addEventListener('click', () => {
-          index = Math.max(0, index - 1);
+        const target = cards[index];
+        if (track && target) {
+          track.scrollTo({
+            left: target.offsetLeft - track.offsetLeft,
+            behavior: reducedMotion ? 'auto' : 'smooth'
+          });
+        }
+      }
+
+      if (track && cards.length) {
+        updateGroupView();
+        if (prevBtn) prevBtn.addEventListener('click', () => scrollToCard(index - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => scrollToCard(index + 1));
+        track.addEventListener('scroll', () => {
+          const cardWidth = (cards[0].offsetWidth || 1) + 24;
+          const newIndex = Math.round(track.scrollLeft / cardWidth);
+          const maxIndex = maxStart();
+          index = Math.max(0, Math.min(maxIndex, newIndex));
           updateGroupView();
-          cards[index].scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
-        });
-        nextBtn.addEventListener('click', () => {
-          index = Math.min(cards.length - 1, index + 1);
-          updateGroupView();
-          cards[index].scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
-        });
+        }, { passive: true });
+        window.addEventListener('resize', updateGroupView);
       }
     });
 
