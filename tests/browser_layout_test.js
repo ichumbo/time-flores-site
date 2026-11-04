@@ -101,7 +101,7 @@ test('mobile section headings stay inside the 390px viewport', { timeout: 20000 
           while (document.readyState !== 'complete') await new Promise(resolve => setTimeout(resolve, 25));
           await document.fonts.ready;
           await new Promise(resolve => setTimeout(resolve, 1000));
-          const selectors = ['#resultados h2', '#planos h2', '#equipe h2'];
+          const selectors = ['#resultados h2', '#planos h2'];
           return {
             viewport: document.documentElement.clientWidth,
             pageScrollWidth: document.documentElement.scrollWidth,

@@ -286,16 +286,6 @@ h2, h3, p { margin-top: 0; }
 .faq-answer p { max-width: 680px; margin: 0; padding: 0 20px 22px 0; border-top: 1px solid var(--border); padding-top: 16px; color: var(--text-secondary); font-size: 14.5px; line-height: 1.65; }
 @keyframes faq-answer-in { from { opacity: 0; transform: translateY(-7px); } to { opacity: 1; transform: translateY(0); } }
 
-.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.team-card { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--bg-secondary); transition: border-color .25s ease, transform .25s ease, background-color .25s ease; }
-.team-card:hover { border-color: var(--blue-light); background: var(--card); transform: translateY(-4px); }
-.team-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; transition: transform .65s ease; }
-.team-card:hover img { transform: scale(1.035); }
-.team-card > div { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 24px 26px 28px; border-top: 1px solid var(--border); }
-.team-card span:not(.method-bignum) { color: var(--blue-light); font: 700 13px/1 var(--font-title); letter-spacing: .2em; }
-.team-card strong { margin-top: 4px; font: 900 31px/1 var(--font-title); }
-.team-card small { color: var(--text-secondary); font-size: 14px; }
-
 .statement-section { position: relative; overflow: hidden; padding: 98px 0; background: var(--blue); color: var(--text); }
 .statement-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .statement-inner > span { font-size: 11px; font-weight: 800; letter-spacing: .15em; }
@@ -451,7 +441,7 @@ h2, h3, p { margin-top: 0; }
   .section { padding: 76px 0; }
   .section-kicker { margin-bottom: 18px; font-size: 9px; }
   .section h2 { font-size: clamp(52px, 14.5vw, 73px); }
-  .results-section h2, .plans-section h2, .team-section h2 { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(43px, 12vw, 58px); }
+  .results-section h2, .plans-section h2 { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(43px, 12vw, 58px); }
   .about-media { padding-right: 12px; }
   .about-badge { padding: 12px 16px; gap: 10px; }
   .about-badge > div strong { font-size: 20px; }
@@ -495,7 +485,7 @@ h2, h3, p { margin-top: 0; }
   .results-titles-dot { width: 8px; height: 8px; box-shadow: 0 0 0 4px rgba(100, 188, 255, .18); }
   .section .results-title-text p { font-size: 13.5px; }
   .results-arrows { display: none; }
-  .results-grid, .team-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
   .result-card { aspect-ratio: 4/4.4; border-radius: 18px; transform: none !important; }
   .result-card.is-square { aspect-ratio: 1/1; }
   .result-card figcaption { min-height: 106px; }

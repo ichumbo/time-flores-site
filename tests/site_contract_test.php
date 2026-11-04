@@ -29,7 +29,7 @@ assert_contract(str_contains($html, '<title>Léo Nery — Nutrição Esportiva</
 assert_contract($xpath->query('//link[@rel="icon" and @href="/assets/images/favicon.png" and @type="image/png"]')->length === 1, 'PNG favicon is active');
 $brandLogos = $xpath->query('//img[contains(concat(" ", normalize-space(@class), " "), " brand-logo ") and @src="/assets/images/logo.png"]');
 assert_contract($brandLogos !== false && $brandLogos->length === 2, 'logo appears in header and footer');
-assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 8, 'eight remaining provisional media slots use the new identity cover');
+assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 6, 'six remaining provisional media slots use the new identity cover');
 assert_contract(str_contains($css, '[data-brand-placeholder]::before'), 'brand placeholder cover is styled');
 assert_contract(str_contains($css, "background-image: url('/assets/images/logo.png')"), 'full logo is used in large placeholders');
 assert_contract(str_contains($css, "background-image: url('/assets/images/favicon.png')"), 'brand mark is used in compact placeholders');
@@ -112,12 +112,11 @@ assert_contract(!str_contains($css, 'border: 1px dashed'), 'all cards use the un
 
 // Break caught: section numbering/order contradicts the requested conversion flow.
 $faqText = $xpath->evaluate('string(//*[@id="faq"]//*[contains(@class,"section-kicker")][1])');
-$teamText = $xpath->evaluate('string(//*[@id="equipe"]//*[contains(@class,"section-kicker")][1])');
 $contactText = $xpath->evaluate('string(//*[@id="contato"]//*[contains(@class,"section-kicker")][1])');
 assert_contract(str_contains($faqText, '05 /'), 'FAQ is section 05');
-assert_contract(str_contains($teamText, '06 /'), 'team is section 06');
-assert_contract(str_contains($contactText, '07 /'), 'contact is section 07');
-assert_contract(strpos($html, 'id="faq"') < strpos($html, 'id="equipe"'), 'FAQ precedes team');
+assert_contract($xpath->query('//*[@id="equipe"]')->length === 0, 'team section #equipe is removed');
+assert_contract(str_contains($contactText, '06 /'), 'contact is section 06');
+assert_contract(strpos($html, 'id="faq"') < strpos($html, 'id="contato"'), 'FAQ precedes contact');
 
 // Break caught: the direct form is replaced by or hidden behind the wizard.
 foreach (['name', 'email', 'phone', 'goal', 'message', 'privacy'] as $fieldId) {
