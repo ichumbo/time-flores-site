@@ -136,7 +136,9 @@ foreach (['header', 'hero', 'faq', 'contact', 'footer', 'floating'] as $context)
 }
 assert_contract($xpath->query('//*[@data-whatsapp-context="plan"]')->length === 5, 'five plan WhatsApp links');
 $footerInstagram = $xpath->query('//footer//a[@href="https://www.instagram.com/nutri.leonery/"]');
+$footerIconButtons = $xpath->query('//footer//a[contains(concat(" ", normalize-space(@class), " "), " footer-icon-btn ")]');
 assert_contract($footerInstagram !== false && $footerInstagram->length === 1, 'footer contains official Instagram link');
+assert_contract($footerIconButtons !== false && $footerIconButtons->length === 2 && trim($footerInstagram->item(0)->textContent) === '', 'footer social links are minimalist icon-only buttons');
 
 // Break caught: generic diagonal arrows return or WhatsApp CTAs lose their distinct chat cue.
 assert_contract(!str_contains($html . $privacy, '↗'), 'diagonal arrow glyphs are absent');
