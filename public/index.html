@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=3">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4">
   <script src="/assets/js/site-config.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/main.js?v=4" defer></script>
   <title>Léo Nery — Nutrição Esportiva</title>
 </head>
 <body>
@@ -80,7 +80,36 @@
       </div>
     </section>
 
-    <section class="section results-section" id="resultados"><div class="container"><div class="section-head section-head-light reveal"><div><span class="section-kicker">03 / NOSSA COMUNIDADE</span><h2>A EVOLUÇÃO<br><em>EM MOVIMENTO.</em></h2></div><p>Reserve este espaço para mostrar fotografias autorizadas, histórias reais e a trajetória das pessoas do time.</p></div><div class="results-grid"><figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-1.webp" width="900" height="1100" alt="Imagem de resultado a ser adicionada" loading="lazy"><figcaption><span>01 / SUPERAÇÃO</span><strong>CADA PASSO<br>CONTA.</strong></figcaption></figure><figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-2.webp" width="900" height="1100" alt="Imagem de evolução a ser adicionada" loading="lazy"><figcaption><span>02 / CONSTRUÇÃO</span><strong>EVOLUÇÃO<br>REAL.</strong></figcaption></figure><figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-3.webp" width="900" height="1100" alt="Imagem da comunidade a ser adicionada" loading="lazy"><figcaption><span>03 / CONSISTÊNCIA</span><strong>SEMPRE EM<br>FRENTE.</strong></figcaption></figure></div><p class="results-disclaimer">As imagens atuais são marcadores de posição. Substitua por fotos próprias e autorizadas antes de publicar.</p></div></section>
+    <section class="section section-dark results-section" id="resultados">
+      <div class="container results-wrap">
+        <div class="section-head reveal">
+          <div><span class="section-kicker">03 / RESULTADOS REAIS</span><h2>RESULTADOS DE QUEM<br><span class="method-heading-muted">FAZ PARTE DO TIME</span></h2></div>
+          <div class="section-head-aside results-head-aside">
+            <p>Pessoas comuns e atletas acompanhados pela equipe, com imagens publicadas mediante autorização.</p>
+            <div class="results-jump"><a href="#res-comuns" class="results-jump-btn is-active" data-results-category="comuns">Pessoas comuns</a><a href="#res-comuns" class="results-jump-btn" data-results-category="atletas">Atletas</a></div>
+          </div>
+        </div>
+        <div id="res-comuns" class="results-block reveal">
+          <div class="results-block-head">
+            <div class="results-title-row">
+              <span class="results-icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" class="ic"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></span>
+              <div class="results-title-text"><h3 id="results-category-title">PESSOAS COMUNS</h3><p id="results-category-desc">Rotina normal, resultados reais: sem extremismo, sem restrição.</p></div>
+            </div>
+            <div class="results-arrows">
+              <button type="button" class="results-arrow" data-results-prev aria-label="Resultado anterior, pessoas comuns"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <button type="button" class="results-arrow" data-results-next aria-label="Próximo resultado, pessoas comuns"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+          <div class="results-grid" data-results-track role="region" aria-label="Resultados de pessoas comuns" tabindex="0">
+            <figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-1.webp" width="900" height="1100" alt="Antes e depois de aluno acompanhado por Léo Nery, resultado 1" loading="lazy"><figcaption><span>01 / SUPERAÇÃO</span><strong>CADA PASSO<br>CONTA.</strong></figcaption></figure>
+            <figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-2.webp" width="900" height="1100" alt="Antes e depois de aluno acompanhado por Léo Nery, resultado 2" loading="lazy"><figcaption><span>02 / CONSTRUÇÃO</span><strong>EVOLUÇÃO<br>REAL.</strong></figcaption></figure>
+            <figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-3.webp" width="900" height="1100" alt="Antes e depois de aluno acompanhado por Léo Nery, resultado 3" loading="lazy"><figcaption><span>03 / CONSISTÊNCIA</span><strong>SEMPRE EM<br>FRENTE.</strong></figcaption></figure>
+          </div>
+          <div class="results-footer" aria-hidden="true"><div class="results-progress"><span data-results-bar></span></div></div>
+        </div>
+        <p class="results-disclaimer reveal"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Os resultados variam de pessoa para pessoa e dependem de fatores individuais, como rotina, histórico e adesão ao plano. Imagens publicadas com autorização dos alunos.</span></p>
+      </div>
+    </section>
 
     <section class="section plans-section" id="planos">
       <div class="container"><div class="plans-heading reveal"><span class="section-kicker">04 / PLANOS E INVESTIMENTO</span><div class="plans-heading-grid"><h2>ESCOLHA O PERÍODO<br>DO SEU <em>ACOMPANHAMENTO.</em></h2><p>Compare os períodos e escolha aquele que combina com o seu momento. Nossa equipe pode ajudar você a tomar a melhor decisão.</p></div></div><div class="plan-scroll-hint" aria-hidden="true">DESLIZE PARA COMPARAR →</div>

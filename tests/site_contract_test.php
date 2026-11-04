@@ -76,6 +76,16 @@ assert_contract($methodExtras !== false && $methodExtras->length === 2, 'methodo
 assert_contract(str_contains($html, 'PASSO A PASSO DE') && str_contains($html, 'COMO TUDO FUNCIONA'), 'methodology heading matches the step-by-step reference');
 assert_contract(str_contains($html, '6h–18h') && str_contains($html, 'dias úteis'), 'methodology extras show support hours and delivery SLA');
 
+// Break caught: results section loses the reference layout, category jump buttons, or carousel controls.
+$resultCards = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ")]');
+$resultJumpBtns = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-jump-btn ")]');
+$resultArrows = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-arrow ")]');
+assert_contract($resultCards !== false && $resultCards->length === 3, 'three result cards');
+assert_contract($resultJumpBtns !== false && $resultJumpBtns->length === 2, 'two results category buttons (Pessoas comuns and Atletas)');
+assert_contract($resultArrows !== false && $resultArrows->length === 2, 'results carousel prev and next arrow buttons');
+assert_contract(str_contains($html, 'RESULTADOS DE QUEM') && str_contains($html, 'FAZ PARTE DO TIME'), 'results heading matches reference');
+assert_contract(str_contains($html, 'PESSOAS COMUNS') && str_contains($html, 'Rotina normal, resultados reais: sem extremismo, sem restrição.'), 'results subheader matches reference');
+
 // Break caught: section numbering/order contradicts the requested conversion flow.
 $faqText = $xpath->evaluate('string(//*[@id="faq"]//*[contains(@class,"section-kicker")][1])');
 $teamText = $xpath->evaluate('string(//*[@id="equipe"]//*[contains(@class,"section-kicker")][1])');
