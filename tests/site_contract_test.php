@@ -39,7 +39,7 @@ $heroImage = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " 
 assert_contract($heroImage !== false && $heroImage->length === 1, 'hero uses the supplied athlete photograph');
 assert_contract(is_file($root . '/public/assets/images/hero-1.png'), 'hero photograph asset exists');
 assert_contract(!str_contains($css, '.hero-visual img'), 'hero photograph is not forced into grayscale');
-assert_contract(!preg_match('/\.hero-outline\s*\{[^}]*left\s*:\s*-/i', $css), 'hero PERFORMANCE outline is not clipped on the left');
+assert_contract((bool) preg_match('/\.hero-outline\s*\{[^}]*right:\s*16px;\s*bottom:\s*-14px;\s*left:\s*-13px;[^}]*117px/i', $css), 'hero PERFORMANCE outline uses the requested 117px and offset configuration');
 $aboutImage = $xpath->query('//*[@id="sobre"]//*[contains(concat(" ", normalize-space(@class), " "), " image-frame ") and not(@data-brand-placeholder)]/img[@src="/assets/images/sobre-1.jpg"]');
 assert_contract($aboutImage !== false && $aboutImage->length === 1, 'about section uses the supplied athlete photograph');
 assert_contract(is_file($root . '/public/assets/images/sobre-1.jpg'), 'about photograph asset exists');
