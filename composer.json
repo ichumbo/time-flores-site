@@ -1,0 +1,9 @@
+{
+  "name": "leonery/landing-page",
+  "description": "Landing page estática com backend seguro PHP para leads",
+  "type": "project",
+  "require": {
+    "php": ">=8.1",
+    "phpmailer/phpmailer": "^6.9"
+  }
+}

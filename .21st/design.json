@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "project": {
+    "name": "time-flores-site",
+    "productType": "fitness coaching landing page",
+    "stack": ["HTML", "CSS", "vanilla JavaScript", "PHP"]
+  },
+  "sources": {
+    "tokens": [],
+    "components": [],
+    "assets": [
+      "public/assets"
+    ],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "dark",
+    "colors": {
+      "background": "#050B18",
+      "backgroundSecondary": "#091529",
+      "card": "#0D1D36",
+      "primary": "#087CFF",
+      "primaryStrong": "#249DFF",
+      "primaryLight": "#64BCFF",
+      "border": "#24415F",
+      "text": "#F5F9FF",
+      "textSecondary": "#A8B9CC"
+    },
+    "typography": {
+      "display": "Barlow Condensed",
+      "body": "DM Sans"
+    },
+    "spacing": { "sectionDesktop": "124px", "sectionMobile": "76px" },
+    "radius": { "default": "0", "round": "50%" },
+    "shadows": { "default": "none" },
+    "motion": { "reveal": "opacity and transform only", "reducedMotion": true },
+    "density": "spacious"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": ["Solid blue identity", "Direct contact form remains primary", "Accessible focus and reduced motion", "Responsive five-plan comparison"],
+    "avoid": ["Gradients", "Decorative transparency", "Neon effects", "Competing primary forms", "Unverified promises"]
+  },
+  "decisions": [
+    "The direct contact form is the primary conversion path.",
+    "WhatsApp is available at strategic points with plan-specific messages.",
+    "The three-step pre-assessment is a secondary modal flow.",
+    "Plans use five columns on wide screens and horizontal scroll snap on mobile.",
+    "CTA affordances use a circular plus for general actions and a circular chat bubble for WhatsApp; diagonal arrow glyphs are not used.",
+    "Methodology cards use oversized editorial step numerals and progress rules instead of pictogram icons or decorative symbols."
+  ],
+  "evidence": ["docs/superpowers/specs/2026-11-04-blue-conversion-site-design.md"],
+  "generatedAt": "2026-11-04T13:13:27.785Z"
+}
