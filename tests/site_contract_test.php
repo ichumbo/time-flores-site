@@ -97,6 +97,9 @@ assert_contract($testimonialCards !== false && $testimonialCards->length === 6, 
 assert_contract($testimonialArrows !== false && $testimonialArrows->length === 2, 'testimonials carousel prev and next controls');
 assert_contract(str_contains($html, 'POR DENTRO DO') && str_contains($html, 'ACOMPANHAMENTO'), 'testimonials heading matches reference');
 assert_contract(str_contains($css, 'calc((100% - 48px) / 3)'), 'testimonials carousel shows 3 cards at a time on desktop');
+$planWatermarks = $xpath->query('//*[@id="planos"]//*[contains(concat(" ", normalize-space(@class), " "), " plan-card ")]/*[contains(concat(" ", normalize-space(@class), " "), " method-bignum ")]');
+assert_contract($planWatermarks !== false && $planWatermarks->length === 5, 'all five plan cards use the unified card visual with watermark numbers');
+assert_contract(!str_contains($css, 'border: 1px dashed'), 'all cards use the unified solid border standard instead of dashed borders');
 
 // Break caught: section numbering/order contradicts the requested conversion flow.
 $faqText = $xpath->evaluate('string(//*[@id="faq"]//*[contains(@class,"section-kicker")][1])');
