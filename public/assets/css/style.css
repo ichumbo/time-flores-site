@@ -117,18 +117,26 @@ h2, h3, p { margin-top: 0; }
 .text-button .cta-icon { width: 17px; height: 17px; flex-basis: 17px; }
 .text-button:hover { color: var(--text); border-color: var(--text); }
 
-.about-grid { display: grid; grid-template-columns: 48% 44%; gap: 8%; align-items: center; }
-.about-media { position: relative; padding: 0 28px 35px 0; }
-.image-frame { position: relative; overflow: hidden; aspect-ratio: 4/4.55; border: 1px solid var(--border); border-radius: 18px; background: var(--bg-secondary); }
-.image-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
-.image-frame:hover img { transform: scale(1.04); }
-.image-index { position: absolute; bottom: 20px; left: 24px; color: var(--text); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
-.about-stamp { position: absolute; right: -10px; bottom: 0; width: 154px; height: 154px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 50%; background: var(--blue); color: var(--text); font: 900 26px/.86 var(--font-title); text-align: center; transform: rotate(8deg); }
-.about-stamp .stamp-mark { margin-top: 7px; color: var(--bg); font-size: 19px; line-height: 1; }
-.about-copy p { max-width: 480px; color: var(--text-secondary); }
-.about-copy p.lead { color: var(--text); font-size: 19px; font-weight: 700; line-height: 1.6; }
-.inline-arrow { display: inline-flex; align-items: center; gap: 22px; margin-top: 12px; padding: 17px 0; border-bottom: 2px solid var(--blue-light); color: var(--blue-light); font-size: 11px; font-weight: 800; }
-.inline-arrow:hover { color: var(--text); border-color: var(--text); }
+.about-grid { display: grid; grid-template-columns: 44% 50%; gap: 6%; align-items: center; }
+.about-media { position: relative; padding: 0 22px 26px 0; }
+.image-frame { position: relative; overflow: hidden; aspect-ratio: 4/5; border: 1px solid var(--border); border-radius: 18px; background: var(--bg-secondary); }
+.image-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .7s ease; }
+.image-frame:hover img { transform: scale(1.035); }
+.image-index { position: absolute; top: 18px; left: 20px; padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; background: rgba(5, 11, 24, .82); color: var(--blue-light); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.about-badge { position: absolute; z-index: 3; right: 0; bottom: 0; display: flex; align-items: center; gap: 14px; padding: 16px 20px; border: 1px solid var(--blue); border-radius: 18px; background: var(--card); color: var(--text); }
+.about-badge .method-step-icon { border-color: var(--blue-light); background: var(--blue); color: var(--text); }
+.about-badge > div { display: flex; flex-direction: column; gap: 4px; }
+.about-badge > div span { color: var(--blue-light); font: 700 11px/1 var(--font-title); letter-spacing: .18em; }
+.about-badge > div strong { font: 900 24px/1 var(--font-title); letter-spacing: .02em; }
+.about-copy h2 { font-size: clamp(50px, 5.4vw, 84px); }
+.about-copy p.lead { max-width: 580px; margin-bottom: 26px; color: var(--text); font-size: 18px; font-weight: 600; line-height: 1.65; }
+.about-pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 28px; }
+.about-pillar { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 8px; padding: 20px 18px; border: 1px solid var(--border); border-radius: 18px; background: var(--bg-secondary); transition: border-color .25s ease, transform .25s ease, background-color .25s ease; }
+.about-pillar:hover, .about-pillar.is-featured { border-color: var(--blue); background: var(--card); transform: translateY(-4px); }
+.about-pillar .method-bignum { right: 8px; top: -12px; font-size: 74px; }
+.about-pillar strong { position: relative; z-index: 1; color: var(--text); font: 800 21px/1.05 var(--font-title); letter-spacing: .02em; }
+.about-pillar span:not(.method-bignum) { position: relative; z-index: 1; color: var(--text-secondary); font-size: 13px; line-height: 1.45; }
+.about-cta { margin-top: 4px; }
 
 .method-wrap { display: flex; flex-direction: column; gap: 36px; }
 .method-wrap .section-head { margin-bottom: 0; }
@@ -444,9 +452,12 @@ h2, h3, p { margin-top: 0; }
   .section-kicker { margin-bottom: 18px; font-size: 9px; }
   .section h2 { font-size: clamp(52px, 14.5vw, 73px); }
   .results-section h2, .plans-section h2, .team-section h2 { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(43px, 12vw, 58px); }
-  .about-media { padding-right: 18px; }
-  .about-stamp { width: 115px; height: 115px; font-size: 21px; }
+  .about-media { padding-right: 12px; }
+  .about-badge { padding: 12px 16px; gap: 10px; }
+  .about-badge > div strong { font-size: 20px; }
   .about-copy p.lead { font-size: 16px; }
+  .about-pillars { grid-template-columns: 1fr; }
+  .about-cta { width: 100%; }
   .section-head { display: block; margin-bottom: 32px; }
   .section-head > p, .section-head-aside { max-width: 100%; margin-top: 22px; }
   .method-wrap { gap: 28px; }

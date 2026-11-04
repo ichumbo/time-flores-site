@@ -29,7 +29,7 @@ assert_contract(str_contains($html, '<title>Léo Nery — Nutrição Esportiva</
 assert_contract($xpath->query('//link[@rel="icon" and @href="/assets/images/favicon.png" and @type="image/png"]')->length === 1, 'PNG favicon is active');
 $brandLogos = $xpath->query('//img[contains(concat(" ", normalize-space(@class), " "), " brand-logo ") and @src="/assets/images/logo.png"]');
 assert_contract($brandLogos !== false && $brandLogos->length === 2, 'logo appears in header and footer');
-assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 9, 'nine remaining provisional media slots use the new identity cover');
+assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 8, 'eight remaining provisional media slots use the new identity cover');
 assert_contract(str_contains($css, '[data-brand-placeholder]::before'), 'brand placeholder cover is styled');
 assert_contract(str_contains($css, "background-image: url('/assets/images/logo.png')"), 'full logo is used in large placeholders');
 assert_contract(str_contains($css, "background-image: url('/assets/images/favicon.png')"), 'brand mark is used in compact placeholders');
@@ -40,6 +40,12 @@ assert_contract($heroImage !== false && $heroImage->length === 1, 'hero uses the
 assert_contract(is_file($root . '/public/assets/images/hero-1.png'), 'hero photograph asset exists');
 assert_contract(!str_contains($css, '.hero-visual img'), 'hero photograph is not forced into grayscale');
 assert_contract(!preg_match('/\.hero-outline\s*\{[^}]*left\s*:\s*-/i', $css), 'hero PERFORMANCE outline is not clipped on the left');
+$aboutImage = $xpath->query('//*[@id="sobre"]//*[contains(concat(" ", normalize-space(@class), " "), " image-frame ") and not(@data-brand-placeholder)]/img[@src="/assets/images/sobre-1.jpg"]');
+assert_contract($aboutImage !== false && $aboutImage->length === 1, 'about section uses the supplied athlete photograph');
+assert_contract(is_file($root . '/public/assets/images/sobre-1.jpg'), 'about photograph asset exists');
+assert_contract(str_contains($html, 'AJUDO VOCÊ A') && str_contains($html, 'Você fala diretamente comigo durante todo processo!'), 'about section uses the requested headline and copy');
+$marqueeSpans = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " marquee-track ")]/span');
+assert_contract($marqueeSpans !== false && $marqueeSpans->length >= 6 && $marqueeSpans->length % 2 === 0, 'marquee repeats enough even copies for seamless infinite loop on wide screens');
 $marqueeSpans = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " marquee-track ")]/span');
 assert_contract($marqueeSpans !== false && $marqueeSpans->length >= 6 && $marqueeSpans->length % 2 === 0, 'marquee repeats enough even copies for seamless infinite loop on wide screens');
 
