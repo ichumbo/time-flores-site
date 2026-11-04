@@ -64,13 +64,17 @@ foreach ($faqButtons as $button) {
     assert_contract($button->hasAttribute('aria-expanded') && $button->hasAttribute('aria-controls'), 'FAQ button ARIA contract');
 }
 
-// Break caught: generic symbols return to the methodology cards instead of the editorial step treatment.
+// Break caught: methodology section loses its 5-step process cards, SVG step icons, or support/delivery cards.
 $methodCards = $xpath->query('//*[@id="metodo"]//*[contains(concat(" ", normalize-space(@class), " "), " method-card ")]');
-$methodVisuals = $xpath->query('//*[@id="metodo"]//*[contains(concat(" ", normalize-space(@class), " "), " method-visual ")]');
-assert_contract($methodCards !== false && $methodCards->length === 3, 'three methodology cards');
-assert_contract($methodVisuals !== false && $methodVisuals->length === 3, 'each methodology card has an editorial step visual');
-assert_contract($xpath->query('//*[@id="metodo"]//*[contains(concat(" ", normalize-space(@class), " "), " method-icon ")]')->length === 0, 'methodology uses no generic icons');
-assert_contract($xpath->query('//*[@id="metodo"]//*[contains(concat(" ", normalize-space(@class), " "), " card-mark ")]')->length === 0, 'methodology uses no decorative symbol marks');
+$methodIcons = $xpath->query('//*[@id="metodo"]//*[contains(concat(" ", normalize-space(@class), " "), " method-step-icon ")]/svg');
+$methodSegs = $xpath->query('//*[@id="metodo"]//*[contains(concat(" ", normalize-space(@class), " "), " method-segs ")]');
+$methodExtras = $xpath->query('//*[@id="metodo"]//*[contains(concat(" ", normalize-space(@class), " "), " method-extras ")]/*');
+assert_contract($methodCards !== false && $methodCards->length === 5, 'five methodology step cards');
+assert_contract($methodIcons !== false && $methodIcons->length === 5, 'each methodology step card has an SVG icon');
+assert_contract($methodSegs !== false && $methodSegs->length === 5, 'each methodology step card has progress segments');
+assert_contract($methodExtras !== false && $methodExtras->length === 2, 'methodology includes support and delivery extra cards');
+assert_contract(str_contains($html, 'PASSO A PASSO DE') && str_contains($html, 'COMO TUDO FUNCIONA'), 'methodology heading matches the step-by-step reference');
+assert_contract(str_contains($html, '6h–18h') && str_contains($html, 'dias úteis'), 'methodology extras show support hours and delivery SLA');
 
 // Break caught: section numbering/order contradicts the requested conversion flow.
 $faqText = $xpath->evaluate('string(//*[@id="faq"]//*[contains(@class,"section-kicker")][1])');
@@ -106,6 +110,8 @@ foreach ($whatsappLinks as $link) {
 }
 assert_contract(str_contains($css, '.cta-icon'), 'CTA icon system is styled');
 assert_contract(str_contains($css, '[data-whatsapp-context] .cta-icon::before'), 'WhatsApp chat icon is styled');
+assert_contract(str_contains($css, 'mask-image:'), 'CTA icons use crisp vector SVG masks');
+assert_contract(!str_contains($html, '>WA<'), 'floating WhatsApp button uses an icon instead of WA text');
 
 assert_contract(str_contains(mb_strtolower($privacy, 'UTF-8'), 'pré-avaliação'), 'privacy explains pre-assessment');
 
