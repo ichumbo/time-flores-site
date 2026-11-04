@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=5">
+  <link rel="stylesheet" href="/assets/css/style.css?v=6">
   <script src="/assets/js/site-config.js" defer></script>
-  <script src="/assets/js/main.js?v=4" defer></script>
+  <script src="/assets/js/main.js?v=6" defer></script>
   <title>Léo Nery — Nutrição Esportiva</title>
 </head>
 <body>
@@ -86,26 +86,45 @@
           <div><span class="section-kicker">03 / RESULTADOS REAIS</span><h2>RESULTADOS DE QUEM<br><span class="method-heading-muted">FAZ PARTE DO TIME</span></h2></div>
           <div class="section-head-aside results-head-aside">
             <p>Pessoas comuns e atletas acompanhados pela equipe, com imagens publicadas mediante autorização.</p>
-            <div class="results-jump"><a href="#res-comuns" class="results-jump-btn is-active" data-results-category="comuns">Pessoas comuns</a><a href="#res-comuns" class="results-jump-btn" data-results-category="atletas">Atletas</a></div>
+            <div class="results-jump"><a href="#res-comuns" class="results-jump-btn">Pessoas comuns</a><a href="#res-atletas" class="results-jump-btn">Atletas</a></div>
           </div>
         </div>
-        <div id="res-comuns" class="results-block reveal">
+        <div id="res-comuns" class="results-block reveal" data-results-group="comuns">
           <div class="results-block-head">
             <div class="results-title-row">
               <span class="results-icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" class="ic"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></span>
-              <div class="results-title-text"><h3 id="results-category-title">PESSOAS COMUNS</h3><p id="results-category-desc">Rotina normal, resultados reais: sem extremismo, sem restrição.</p></div>
+              <div class="results-title-text"><div class="results-title-line"><h3>PESSOAS COMUNS</h3></div><p>Rotina normal, resultados reais: sem extremismo, sem restrição.</p></div>
             </div>
             <div class="results-arrows">
-              <button type="button" class="results-arrow" data-results-prev aria-label="Resultado anterior, pessoas comuns"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-              <button type="button" class="results-arrow" data-results-next aria-label="Próximo resultado, pessoas comuns"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+              <button type="button" class="results-arrow" data-results-prev="comuns" aria-label="Resultado anterior, pessoas comuns"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <button type="button" class="results-arrow" data-results-next="comuns" aria-label="Próximo resultado, pessoas comuns"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             </div>
           </div>
-          <div class="results-grid" data-results-track role="region" aria-label="Resultados de pessoas comuns" tabindex="0">
+          <div class="results-grid" role="region" aria-label="Resultados de pessoas comuns" tabindex="0">
             <figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-1.webp" width="900" height="1100" alt="Antes e depois de aluno acompanhado por Léo Nery, resultado 1" loading="lazy"><figcaption><span>01 / SUPERAÇÃO</span><strong>CADA PASSO<br>CONTA.</strong></figcaption></figure>
             <figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-2.webp" width="900" height="1100" alt="Antes e depois de aluno acompanhado por Léo Nery, resultado 2" loading="lazy"><figcaption><span>02 / CONSTRUÇÃO</span><strong>EVOLUÇÃO<br>REAL.</strong></figcaption></figure>
             <figure class="result-card reveal" data-brand-placeholder><img src="/assets/images/resultado-3.webp" width="900" height="1100" alt="Antes e depois de aluno acompanhado por Léo Nery, resultado 3" loading="lazy"><figcaption><span>03 / CONSISTÊNCIA</span><strong>SEMPRE EM<br>FRENTE.</strong></figcaption></figure>
           </div>
-          <div class="results-footer" aria-hidden="true"><div class="results-progress"><span data-results-bar></span></div></div>
+          <div class="results-footer" aria-hidden="true"><div class="results-progress"><span data-results-bar="comuns"></span></div></div>
+        </div>
+        <div class="results-divider" aria-hidden="true"></div>
+        <div id="res-atletas" class="results-block reveal" data-results-group="atletas">
+          <div class="results-block-head">
+            <div class="results-title-row">
+              <span class="results-icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" class="ic"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4"/><path d="M16 6h3a3 3 0 0 1-3 4"/><path d="M12 13v4"/><path d="M8 21h8"/><path d="M9.5 17h5"/></svg></span>
+              <div class="results-title-text"><div class="results-title-line"><h3>ATLETAS</h3><span class="results-titles"><span class="results-titles-dot" aria-hidden="true"></span>ALTA PERFORMANCE</span></div><p>Atletas acompanhados pela equipe nos palcos do fisiculturismo.</p></div>
+            </div>
+            <div class="results-arrows">
+              <button type="button" class="results-arrow" data-results-prev="atletas" aria-label="Resultado anterior, atletas"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <button type="button" class="results-arrow" data-results-next="atletas" aria-label="Próximo resultado, atletas"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+          <div class="results-grid" role="region" aria-label="Resultados de atletas" tabindex="0">
+            <figure class="result-card is-square reveal" data-brand-placeholder><img src="/assets/images/resultado-1.webp" width="900" height="900" alt="Atleta acompanhado por Léo Nery em competição de fisiculturismo, foto 1" loading="lazy"><figcaption><span>01 / PALCO</span><strong>PREPARAÇÃO<br>DE PALCO.</strong></figcaption></figure>
+            <figure class="result-card is-square reveal" data-brand-placeholder><img src="/assets/images/resultado-2.webp" width="900" height="900" alt="Atleta acompanhado por Léo Nery em competição de fisiculturismo, foto 2" loading="lazy"><figcaption><span>02 / CONQUISTA</span><strong>ALTA<br>PERFORMANCE.</strong></figcaption></figure>
+            <figure class="result-card is-square reveal" data-brand-placeholder><img src="/assets/images/resultado-3.webp" width="900" height="900" alt="Atleta acompanhado por Léo Nery em competição de fisiculturismo, foto 3" loading="lazy"><figcaption><span>03 / FÍSICO</span><strong>DEFINIÇÃO E<br>VOLUME.</strong></figcaption></figure>
+          </div>
+          <div class="results-footer" aria-hidden="true"><div class="results-progress"><span data-results-bar="atletas"></span></div></div>
         </div>
         <p class="results-disclaimer reveal"><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Os resultados variam de pessoa para pessoa e dependem de fatores individuais, como rotina, histórico e adesão ao plano. Imagens publicadas com autorização dos alunos.</span></p>
       </div>

@@ -29,7 +29,7 @@ assert_contract(str_contains($html, '<title>Léo Nery — Nutrição Esportiva</
 assert_contract($xpath->query('//link[@rel="icon" and @href="/assets/images/favicon.png" and @type="image/png"]')->length === 1, 'PNG favicon is active');
 $brandLogos = $xpath->query('//img[contains(concat(" ", normalize-space(@class), " "), " brand-logo ") and @src="/assets/images/logo.png"]');
 assert_contract($brandLogos !== false && $brandLogos->length === 2, 'logo appears in header and footer');
-assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 6, 'six remaining provisional media slots use the new identity cover');
+assert_contract($xpath->query('//*[@data-brand-placeholder]')->length === 9, 'nine remaining provisional media slots use the new identity cover');
 assert_contract(str_contains($css, '[data-brand-placeholder]::before'), 'brand placeholder cover is styled');
 assert_contract(str_contains($css, "background-image: url('/assets/images/logo.png')"), 'full logo is used in large placeholders');
 assert_contract(str_contains($css, "background-image: url('/assets/images/favicon.png')"), 'brand mark is used in compact placeholders');
@@ -79,13 +79,16 @@ assert_contract(str_contains($css, '.section .method-big-figure'), 'methodology 
 
 // Break caught: results section loses the reference layout, category jump buttons, or carousel controls.
 $resultCards = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ")]');
+$athleteCards = $xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and contains(concat(" ", normalize-space(@class), " "), " is-square ")]');
 $resultJumpBtns = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-jump-btn ")]');
 $resultArrows = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-arrow ")]');
-assert_contract($resultCards !== false && $resultCards->length === 3, 'three result cards');
+assert_contract($resultCards !== false && $resultCards->length === 6, 'six result cards across common people and athletes');
+assert_contract($athleteCards !== false && $athleteCards->length === 3, 'three square athlete result cards in #res-atletas');
 assert_contract($resultJumpBtns !== false && $resultJumpBtns->length === 2, 'two results category buttons (Pessoas comuns and Atletas)');
-assert_contract($resultArrows !== false && $resultArrows->length === 2, 'results carousel prev and next arrow buttons');
+assert_contract($resultArrows !== false && $resultArrows->length === 4, 'results carousel prev and next arrow buttons for both blocks');
 assert_contract(str_contains($html, 'RESULTADOS DE QUEM') && str_contains($html, 'FAZ PARTE DO TIME'), 'results heading matches reference');
 assert_contract(str_contains($html, 'PESSOAS COMUNS') && str_contains($html, 'Rotina normal, resultados reais: sem extremismo, sem restrição.'), 'results subheader matches reference');
+assert_contract(str_contains($html, 'ATLETAS') && str_contains($html, 'Atletas acompanhados pela equipe nos palcos do fisiculturismo.'), 'athletes subheader matches reference');
 
 // Break caught: section numbering/order contradicts the requested conversion flow.
 $faqText = $xpath->evaluate('string(//*[@id="faq"]//*[contains(@class,"section-kicker")][1])');

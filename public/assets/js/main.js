@@ -218,54 +218,37 @@
       entry.button.addEventListener('click', () => applyFaqSelection(faqEntries, index));
     });
 
-    const resultsCategoryBtns = $$('[data-results-category]');
-    const resultsTitle = $('#results-category-title');
-    const resultsDesc = $('#results-category-desc');
-    const resultsPrev = $('[data-results-prev]');
-    const resultsNext = $('[data-results-next]');
-    const resultsBar = $('[data-results-bar]');
-    const resultsCards = $$('#resultados .result-card');
-    let resultsIndex = 0;
+    $$('[data-results-group]').forEach(group => {
+      const prevBtn = $('[data-results-prev]', group);
+      const nextBtn = $('[data-results-next]', group);
+      const bar = $('[data-results-bar]', group);
+      const cards = $$('.result-card', group);
+      let index = 0;
 
-    function updateResultsView() {
-      const total = Math.max(1, resultsCards.length);
-      if (resultsBar) {
-        const width = 100 / total;
-        resultsBar.style.width = `${width}%`;
-        resultsBar.style.left = `${resultsIndex * width}%`;
-      }
-      if (resultsPrev) resultsPrev.disabled = resultsIndex <= 0;
-      if (resultsNext) resultsNext.disabled = resultsIndex >= total - 1;
-    }
-
-    if (resultsPrev && resultsNext && resultsCards.length) {
-      updateResultsView();
-      resultsPrev.addEventListener('click', () => {
-        resultsIndex = Math.max(0, resultsIndex - 1);
-        updateResultsView();
-        resultsCards[resultsIndex].scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
-      });
-      resultsNext.addEventListener('click', () => {
-        resultsIndex = Math.min(resultsCards.length - 1, resultsIndex + 1);
-        updateResultsView();
-        resultsCards[resultsIndex].scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
-      });
-    }
-
-    resultsCategoryBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const category = btn.dataset.resultsCategory;
-        resultsCategoryBtns.forEach(item => item.classList.toggle('is-active', item === btn));
-        if (resultsTitle && resultsDesc) {
-          if (category === 'atletas') {
-            resultsTitle.textContent = 'ATLETAS';
-            resultsDesc.textContent = 'Atletas acompanhados pela equipe nos palcos do fisiculturismo.';
-          } else {
-            resultsTitle.textContent = 'PESSOAS COMUNS';
-            resultsDesc.textContent = 'Rotina normal, resultados reais: sem extremismo, sem restrição.';
-          }
+      function updateGroupView() {
+        const total = Math.max(1, cards.length);
+        if (bar) {
+          const width = 100 / total;
+          bar.style.width = `${width}%`;
+          bar.style.left = `${index * width}%`;
         }
-      });
+        if (prevBtn) prevBtn.disabled = index <= 0;
+        if (nextBtn) nextBtn.disabled = index >= total - 1;
+      }
+
+      if (prevBtn && nextBtn && cards.length) {
+        updateGroupView();
+        prevBtn.addEventListener('click', () => {
+          index = Math.max(0, index - 1);
+          updateGroupView();
+          cards[index].scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
+        });
+        nextBtn.addEventListener('click', () => {
+          index = Math.min(cards.length - 1, index + 1);
+          updateGroupView();
+          cards[index].scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'nearest' });
+        });
+      }
     });
 
     $$('#phone, #assessment-phone').forEach(input => {
