@@ -99,6 +99,7 @@ foreach (range(1, 5) as $i) {
     assert_contract(is_file($root . "/public/assets/images/comum-{$i}.jpg"), "common result image comum-{$i}.jpg exists");
 }
 assert_contract($xpath->query('//*[@id="resultados"]//figcaption')->length === 0, 'result cards do not cover the bottom of the artwork with a figcaption bar');
+assert_contract($xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-art-preview ")]')->length === 0, 'athletes section does not use before-and-after split preview');
 assert_contract($resultJumpBtns !== false && $resultJumpBtns->length === 2, 'two results category buttons (Pessoas comuns and Atletas)');
 assert_contract($resultArrows !== false && $resultArrows->length === 4, 'results carousel prev and next arrow buttons for both blocks');
 assert_contract(str_contains($html, 'RESULTADOS DE QUEM') && str_contains($html, 'FAZ PARTE DO TIME'), 'results heading matches reference');
