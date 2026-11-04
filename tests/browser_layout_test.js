@@ -116,7 +116,7 @@ test('mobile section headings stay inside the 390px viewport', { timeout: 20000 
             }),
             resultCaptions: [...document.querySelectorAll('.result-card')].map(card => {
               const cardRect = card.getBoundingClientRect();
-              const labelRect = card.querySelector('figcaption strong').getBoundingClientRect();
+              const labelRect = card.querySelector('img').getBoundingClientRect();
               return { cardLeft: cardRect.left, cardRight: cardRect.right, labelLeft: labelRect.left, labelRight: labelRect.right };
             }),
             contrastSamples: ['.btn-primary', '#faq .section-kicker'].map(selector => {

@@ -88,11 +88,14 @@ assert_contract(str_contains($css, '.section .method-big-figure'), 'methodology 
 
 // Break caught: results section loses the reference layout, category jump buttons, or carousel controls.
 $resultCards = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ")]');
-$athleteCards = $xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and contains(concat(" ", normalize-space(@class), " "), " is-square ")]');
+$commonCards = $xpath->query('//*[@id="res-comuns"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(contains(concat(" ", normalize-space(@class), " "), " is-square "))]/img[@width="800" and @height="1036"]');
+$athleteCards = $xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(contains(concat(" ", normalize-space(@class), " "), " is-square "))]/img[@width="800" and @height="1036"]');
 $resultJumpBtns = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-jump-btn ")]');
 $resultArrows = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-arrow ")]');
 assert_contract($resultCards !== false && $resultCards->length === 6, 'six result cards across common people and athletes');
-assert_contract($athleteCards !== false && $athleteCards->length === 3, 'three square athlete result cards in #res-atletas');
+assert_contract($commonCards !== false && $commonCards->length === 3, 'three 800x1036 artwork result cards in #res-comuns');
+assert_contract($athleteCards !== false && $athleteCards->length === 3, 'three 800x1036 artwork result cards in #res-atletas');
+assert_contract($xpath->query('//*[@id="resultados"]//figcaption')->length === 0, 'result cards do not cover the bottom of the artwork with a figcaption bar');
 assert_contract($resultJumpBtns !== false && $resultJumpBtns->length === 2, 'two results category buttons (Pessoas comuns and Atletas)');
 assert_contract($resultArrows !== false && $resultArrows->length === 4, 'results carousel prev and next arrow buttons for both blocks');
 assert_contract(str_contains($html, 'RESULTADOS DE QUEM') && str_contains($html, 'FAZ PARTE DO TIME'), 'results heading matches reference');
