@@ -35,9 +35,9 @@ assert_contract(str_contains($css, "background-image: url('/assets/images/logo.p
 assert_contract(str_contains($css, "background-image: url('/assets/images/favicon.png')"), 'brand mark is used in compact placeholders');
 
 // Break caught: the supplied athlete photograph is replaced by the former hero placeholder.
-$heroImage = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " hero-visual ") and not(@data-brand-placeholder)]/img[@src="/assets/images/hero-1.png" and @width="1080" and @height="1350"]');
+$heroImage = $xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " hero-visual ") and not(@data-brand-placeholder)]/img[@src="/assets/images/hero-2.jpg" and @width="819" and @height="1024"]');
 assert_contract($heroImage !== false && $heroImage->length === 1, 'hero uses the supplied athlete photograph');
-assert_contract(is_file($root . '/public/assets/images/hero-1.png'), 'hero photograph asset exists');
+assert_contract(is_file($root . '/public/assets/images/hero-2.jpg'), 'hero photograph asset exists');
 assert_contract(!str_contains($css, '.hero-visual img'), 'hero photograph is not forced into grayscale');
 assert_contract((bool) preg_match('/\.hero-outline\s*\{[^}]*right:\s*16px;\s*bottom:\s*-14px;\s*left:\s*-13px;[^}]*117px/i', $css), 'hero PERFORMANCE outline uses the requested 117px and offset configuration');
 $aboutImage = $xpath->query('//*[@id="sobre"]//*[contains(concat(" ", normalize-space(@class), " "), " image-frame ") and not(@data-brand-placeholder)]/img[@src="/assets/images/sobre-1.jpg"]');
