@@ -90,6 +90,14 @@ assert_contract(str_contains($html, 'RESULTADOS DE QUEM') && str_contains($html,
 assert_contract(str_contains($html, 'PESSOAS COMUNS') && str_contains($html, 'Rotina normal, resultados reais: sem extremismo, sem restrição.'), 'results subheader matches reference');
 assert_contract(str_contains($html, 'ATLETAS') && str_contains($html, 'Atletas acompanhados pela equipe nos palcos do fisiculturismo.'), 'athletes subheader matches reference');
 
+// Break caught: testimonials carousel section or its 3-per-view card layout is missing.
+$testimonialCards = $xpath->query('//*[@id="depoimentos"]//*[contains(concat(" ", normalize-space(@class), " "), " testimonial-card ")]');
+$testimonialArrows = $xpath->query('//*[@id="depoimentos"]//*[@data-testimonials-prev or @data-testimonials-next]');
+assert_contract($testimonialCards !== false && $testimonialCards->length === 6, 'six testimonial cards in #depoimentos carousel');
+assert_contract($testimonialArrows !== false && $testimonialArrows->length === 2, 'testimonials carousel prev and next controls');
+assert_contract(str_contains($html, 'POR DENTRO DO') && str_contains($html, 'ACOMPANHAMENTO'), 'testimonials heading matches reference');
+assert_contract(str_contains($css, 'calc((100% - 48px) / 3)'), 'testimonials carousel shows 3 cards at a time on desktop');
+
 // Break caught: section numbering/order contradicts the requested conversion flow.
 $faqText = $xpath->evaluate('string(//*[@id="faq"]//*[contains(@class,"section-kicker")][1])');
 $teamText = $xpath->evaluate('string(//*[@id="equipe"]//*[contains(@class,"section-kicker")][1])');

@@ -251,6 +251,53 @@
       }
     });
 
+    const testimonialsTrack = $('[data-testimonials-track]');
+    const testimonialsPrev = $('[data-testimonials-prev]');
+    const testimonialsNext = $('[data-testimonials-next]');
+    const testimonialsDots = $$('[data-testimonials-dot]');
+    const testimonialCards = $$('#depoimentos .testimonial-card');
+    let testimonialIndex = 0;
+
+    function maxTestimonialStart() {
+      const perView = window.innerWidth <= 600 ? 1 : window.innerWidth <= 850 ? 2 : 3;
+      return Math.max(0, testimonialCards.length - perView);
+    }
+
+    function updateTestimonialsUi() {
+      const maxIndex = maxTestimonialStart();
+      testimonialIndex = Math.max(0, Math.min(maxIndex, testimonialIndex));
+      if (testimonialsPrev) testimonialsPrev.disabled = testimonialIndex <= 0;
+      if (testimonialsNext) testimonialsNext.disabled = testimonialIndex >= maxIndex;
+      testimonialsDots.forEach((dot, idx) => {
+        const active = idx === testimonialIndex;
+        dot.classList.toggle('is-active', active);
+        if (active) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
+    }
+
+    function scrollToTestimonial(index) {
+      testimonialIndex = Math.max(0, Math.min(maxTestimonialStart(), index));
+      updateTestimonialsUi();
+      const target = testimonialCards[testimonialIndex];
+      if ( testimonialsTrack && target ) {
+        testimonialsTrack.scrollTo({
+          left: target.offsetLeft - testimonialsTrack.offsetLeft,
+          behavior: reducedMotion ? 'auto' : 'smooth'
+        });
+      }
+    }
+
+    if (testimonialsTrack && testimonialCards.length) {
+      updateTestimonialsUi();
+      if (testimonialsPrev) testimonialsPrev.addEventListener('click', () => scrollToTestimonial(testimonialIndex - 1));
+      if (testimonialsNext) testimonialsNext.addEventListener('click', () => scrollToTestimonial(testimonialIndex + 1));
+      testimonialsDots.forEach(dot => {
+        dot.addEventListener('click', () => scrollToTestimonial(Number(dot.dataset.testimonialsDot || 0)));
+      });
+      window.addEventListener('resize', updateTestimonialsUi);
+    }
+
     $$('#phone, #assessment-phone').forEach(input => {
       input.addEventListener('input', () => { input.value = formatPhoneValue(input.value); });
     });
