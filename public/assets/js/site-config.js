@@ -14,7 +14,7 @@
   const messages = Object.freeze({
     header: 'Olá! Conheci o trabalho do Léo Nery pelo site e gostaria de saber como começar.',
     hero: 'Olá! Quero conhecer o acompanhamento do Léo Nery e entender qual opção combina comigo.',
-    faq: 'Olá! Ainda tenho dúvidas sobre o acompanhamento e gostaria de conversar com a equipe.',
+    faq: 'Olá! Ainda tenho dúvidas sobre o acompanhamento e gostaria de conversar com você.',
     contact: 'Olá! Prefiro conversar diretamente pelo WhatsApp sobre o acompanhamento.',
     footer: 'Olá! Vim pelo site do Léo Nery e gostaria de mais informações.',
     floating: 'Olá! Vim pelo site do Léo Nery e gostaria de conversar.',
