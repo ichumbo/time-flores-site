@@ -92,11 +92,13 @@ $commonCards = $xpath->query('//*[@id="res-comuns"]//*[contains(concat(" ", norm
 $athleteCards = $xpath->query('//*[@id="res-atletas"]//*[contains(concat(" ", normalize-space(@class), " "), " result-card ") and not(@data-brand-placeholder)]/img');
 $resultJumpBtns = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-jump-btn ")]');
 $resultArrows = $xpath->query('//*[@id="resultados"]//*[contains(concat(" ", normalize-space(@class), " "), " results-arrow ")]');
-assert_contract($resultCards !== false && $resultCards->length === 10, 'ten result cards across common people and athletes');
-assert_contract($commonCards !== false && $commonCards->length === 5, 'five artwork result cards in #res-comuns');
+assert_contract($resultCards !== false && $resultCards->length === 11, 'eleven result cards across common people and athletes');
+assert_contract($commonCards !== false && $commonCards->length === 6, 'six artwork result cards in #res-comuns');
 assert_contract($athleteCards !== false && $athleteCards->length === 5, 'five photo result cards in #res-atletas');
-foreach (range(1, 5) as $i) {
+foreach (range(1, 6) as $i) {
     assert_contract(is_file($root . "/public/assets/images/comum-{$i}.jpg"), "common result image comum-{$i}.jpg exists");
+}
+foreach (range(1, 5) as $i) {
     assert_contract(is_file($root . "/public/assets/images/atleta-{$i}.jpg"), "athlete result image atleta-{$i}.jpg exists");
 }
 assert_contract($xpath->query('//*[@id="resultados"]//figcaption')->length === 0, 'result cards do not cover the bottom of the artwork with a figcaption bar');
