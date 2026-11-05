@@ -56,10 +56,10 @@ assert_contract($configPosition !== false && $mainPosition !== false && $configP
 
 // Break caught: plan count, period, or price diverges from the commercial brief.
 $planNodes = $xpath->query('//*[@data-plan-months and @data-plan-value]');
-assert_contract($planNodes !== false && $planNodes->length === 5, 'exactly five plan cards');
+assert_contract($planNodes !== false && $planNodes->length === 4, 'exactly four plan cards');
 $expectedPlans = [
-    '1' => 'R$ 385,00', '2' => 'R$ 700,00', '3' => 'R$ 899,00',
-    '4' => 'R$ 1.120,00', '5' => 'R$ 1.250,00',
+    '1' => 'R$ 150,00', '3' => 'R$ 405,00', '6' => 'R$ 765,00',
+    '12' => 'R$ 1.440,00',
 ];
 foreach ($planNodes as $node) {
     $months = $node->getAttribute('data-plan-months');
@@ -110,7 +110,7 @@ assert_contract(str_contains($html, 'ATLETAS') && str_contains($html, 'Atletas q
 // Break caught: testimonials carousel section is removed per user request.
 assert_contract($xpath->query('//*[@id="depoimentos"]')->length === 0, 'testimonials section #depoimentos is removed');
 $planWatermarks = $xpath->query('//*[@id="planos"]//*[contains(concat(" ", normalize-space(@class), " "), " plan-card ")]/*[contains(concat(" ", normalize-space(@class), " "), " method-bignum ")]');
-assert_contract($planWatermarks !== false && $planWatermarks->length === 5, 'all five plan cards use the unified card visual with watermark numbers');
+assert_contract($planWatermarks !== false && $planWatermarks->length === 4, 'all four plan cards use the unified card visual with watermark numbers');
 assert_contract(!str_contains($css, 'border: 1px dashed'), 'all cards use the unified solid border standard instead of dashed borders');
 
 // Break caught: section numbering/order contradicts the requested conversion flow.
@@ -134,7 +134,7 @@ assert_contract($steps !== false && $steps->length === 3, 'assessment has three 
 foreach (['header', 'hero', 'faq', 'contact', 'footer', 'floating'] as $context) {
     assert_contract($xpath->query('//*[@data-whatsapp-context="' . $context . '"]')->length >= 1, "WhatsApp context {$context}");
 }
-assert_contract($xpath->query('//*[@data-whatsapp-context="plan"]')->length === 5, 'five plan WhatsApp links');
+assert_contract($xpath->query('//*[@data-whatsapp-context="plan"]')->length === 4, 'four plan WhatsApp links');
 $footerInstagram = $xpath->query('//footer//a[@href="https://www.instagram.com/nutri.leonery/"]');
 $footerIconButtons = $xpath->query('//footer//a[contains(concat(" ", normalize-space(@class), " "), " footer-icon-btn ")]');
 assert_contract($footerInstagram !== false && $footerInstagram->length === 1, 'footer contains official Instagram link');
@@ -147,7 +147,7 @@ assert_contract(is_file($root . '/public/assets/images/devstep-logo.png'), 'devs
 // Break caught: generic diagonal arrows return or WhatsApp CTAs lose their distinct chat cue.
 assert_contract(!str_contains($html . $privacy, '↗'), 'diagonal arrow glyphs are absent');
 $whatsappLinks = $xpath->query('//*[@data-whatsapp-context and @data-whatsapp-context!="floating"]');
-assert_contract($whatsappLinks !== false && $whatsappLinks->length === 11, 'eleven text WhatsApp conversion links');
+assert_contract($whatsappLinks !== false && $whatsappLinks->length === 10, 'ten text WhatsApp conversion links');
 foreach ($whatsappLinks as $link) {
     $icons = $xpath->query('.//*[contains(concat(" ", normalize-space(@class), " "), " cta-icon ")]', $link);
     assert_contract($icons !== false && $icons->length === 1, 'each text WhatsApp CTA has one chat icon');
@@ -167,7 +167,7 @@ assert_contract(!preg_match('/(?:linear|radial)-gradient\s*\(/i', $css), 'design
 assert_contract(str_contains($css, '.section::before') && str_contains($css, '.section::after') && str_contains($css, 'filter: blur('), 'sections have illuminated blue ambient background glows');
 
 // Break caught: responsive/accessible component styling is accidentally removed.
-assert_contract((bool) preg_match('/\.plans-grid\s*\{[^}]*grid-template-columns\s*:\s*repeat\(5\s*,\s*1fr\)/s', $css), 'wide plans use five columns');
+assert_contract((bool) preg_match('/\.plans-grid\s*\{[^}]*grid-template-columns\s*:\s*repeat\(4\s*,\s*1fr\)/s', $css), 'wide plans use four columns');
 assert_contract((bool) preg_match('/scroll-snap-type\s*:\s*x\s+mandatory/i', $css), 'mobile plans use scroll snap');
 assert_contract(str_contains($css, '.assessment-dialog'), 'assessment dialog is styled');
 assert_contract(str_contains($css, ':focus-visible'), 'visible focus is styled');

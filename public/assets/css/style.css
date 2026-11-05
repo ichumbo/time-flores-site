@@ -262,12 +262,12 @@ h2, h3, p { margin-top: 0; }
 .plans-heading-grid > * { min-width: 0; }
 .plans-heading-grid h2 { margin-bottom: 0; }
 .plans-heading-grid p { max-width: 390px; margin: 0 0 7px; color: var(--text-secondary); }
-.plans-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.plans-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .plan-card { position: relative; overflow: hidden; min-width: 0; min-height: 390px; display: flex; flex-direction: column; gap: 16px; padding: 26px 22px 22px; border: 1px solid var(--border); border-radius: 18px; background: var(--bg-secondary); transition: transform .25s ease, border-color .25s ease, background-color .25s ease; }
 .plan-card:hover, .plan-card.is-featured { border-color: var(--blue); background: var(--card); transform: translateY(-4px); }
 .plan-card.is-featured .method-bignum { color: rgba(100, 188, 255, .14); }
 .plan-card.is-featured .method-step-icon { border-color: var(--blue-light); background: var(--blue); color: var(--text); }
-.plan-meter { width: 100px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.plan-meter { width: 100px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
 .plan-meter span { height: 4px; background: var(--border); transform: skew(-24deg); }
 .plan-meter span.is-filled { background: var(--blue); }
 .plan-card.is-featured .plan-meter span.is-filled { background: var(--blue-light); }
@@ -407,7 +407,7 @@ h2, h3, p { margin-top: 0; }
 .method-grid .reveal:nth-child(2), .results-grid .reveal:nth-child(2), .plans-grid .reveal:nth-child(2), .team-grid .reveal:nth-child(2) { transition-delay: 90ms; }
 .method-grid .reveal:nth-child(3), .results-grid .reveal:nth-child(3), .plans-grid .reveal:nth-child(3) { transition-delay: 160ms; }
 .method-grid .reveal:nth-child(4), .plans-grid .reveal:nth-child(4) { transition-delay: 230ms; }
-.method-grid .reveal:nth-child(5), .plans-grid .reveal:nth-child(5) { transition-delay: 300ms; }
+.method-grid .reveal:nth-child(5) { transition-delay: 300ms; }
 
 @media (max-width: 1180px) {
   .container { width: min(calc(100% - 56px), var(--width)); }
@@ -418,7 +418,7 @@ h2, h3, p { margin-top: 0; }
   .section h2 { font-size: 70px; }
   .method-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .method-extras { grid-template-columns: minmax(0, 1fr); }
-  .plans-grid { grid-template-columns: repeat(3, 1fr); }
+  .plans-grid { grid-template-columns: repeat(2, 1fr); }
   .plan-price strong { font-size: 34px; }
 }
 
@@ -451,7 +451,6 @@ h2, h3, p { margin-top: 0; }
   .testimonial-card { flex: 0 0 calc((100% - 24px) / 2); }
   .plans-heading-grid p { margin: 0; }
   .plans-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .plan-card:nth-child(5):last-child { grid-column: 1 / -1; max-width: 440px; width: 100%; margin-inline: auto; }
   .faq-support-card { max-width: 100%; }
   .contact-note { margin-top: 36px; }
   .statement-section h2 { font-size: clamp(68px, 11vw, 120px); }
