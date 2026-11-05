@@ -105,7 +105,7 @@ assert_contract($resultJumpBtns !== false && $resultJumpBtns->length === 2, 'two
 assert_contract($resultArrows !== false && $resultArrows->length === 4, 'results carousel prev and next arrow buttons for both blocks');
 assert_contract(str_contains($html, 'RESULTADOS DE QUEM') && str_contains($html, 'FAZ PARTE DO TIME'), 'results heading matches reference');
 assert_contract(str_contains($html, 'PESSOAS COMUNS') && str_contains($html, 'Rotina normal, resultados reais: sem extremismo, sem restrição.'), 'results subheader matches reference');
-assert_contract(str_contains($html, 'ATLETAS') && str_contains($html, 'Atletas acompanhados pela equipe nos palcos do fisiculturismo.'), 'athletes subheader matches reference');
+assert_contract(str_contains($html, 'ATLETAS') && str_contains($html, 'Atletas que fazem parte do meu time.'), 'athletes subheader matches reference');
 
 // Break caught: testimonials carousel section or its 3-per-view card layout is missing.
 $testimonialCards = $xpath->query('//*[@id="depoimentos"]//*[contains(concat(" ", normalize-space(@class), " "), " testimonial-card ")]');
