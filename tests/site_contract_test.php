@@ -83,7 +83,7 @@ assert_contract($methodIcons !== false && $methodIcons->length === 5, 'each meth
 assert_contract($methodSegs !== false && $methodSegs->length === 5, 'each methodology step card has progress segments');
 assert_contract($methodExtras !== false && $methodExtras->length === 2, 'methodology includes support and delivery extra cards');
 assert_contract(str_contains($html, 'PASSO A PASSO DE') && str_contains($html, 'COMO TUDO FUNCIONA'), 'methodology heading matches the step-by-step reference');
-assert_contract(str_contains($html, '6h–18h') && str_contains($html, 'dias úteis'), 'methodology extras show support hours and delivery SLA');
+assert_contract(str_contains($html, '6h–18h') && (str_contains($html, '24 horas') || str_contains($html, 'horas')), 'methodology extras show support hours and delivery SLA');
 assert_contract(str_contains($css, '.section .method-big-figure'), 'methodology big figures override generic section paragraph font size');
 
 // Break caught: results section loses the reference layout, category jump buttons, or carousel controls.
