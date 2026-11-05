@@ -16,6 +16,7 @@
     hero: 'Olá! Quero conhecer o acompanhamento do Léo Nery e entender qual opção combina comigo.',
     faq: 'Olá! Ainda tenho dúvidas sobre o acompanhamento e gostaria de conversar com você.',
     contact: 'Olá! Prefiro conversar diretamente pelo WhatsApp sobre o acompanhamento.',
+    presencial: 'Olá Léo! Gostaria de agendar uma consulta presencial e saber mais sobre locais e horários.',
     footer: 'Olá! Vim pelo site do Léo Nery e gostaria de mais informações.',
     floating: 'Olá! Vim pelo site do Léo Nery e gostaria de conversar.',
     plan(months, value) {

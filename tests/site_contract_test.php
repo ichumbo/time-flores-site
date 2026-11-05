@@ -133,10 +133,15 @@ assert_contract($dialog !== false && $dialog->length === 1, 'assessment dialog e
 assert_contract($steps !== false && $steps->length === 3, 'assessment has three steps');
 
 // Break caught: a required conversion point lacks a config-driven WhatsApp hook.
-foreach (['header', 'hero', 'faq', 'contact', 'footer', 'floating'] as $context) {
+foreach (['header', 'hero', 'presencial', 'faq', 'contact', 'footer', 'floating'] as $context) {
     assert_contract($xpath->query('//*[@data-whatsapp-context="' . $context . '"]')->length >= 1, "WhatsApp context {$context}");
 }
 assert_contract($xpath->query('//*[@data-whatsapp-context="plan"]')->length === 4, 'four plan WhatsApp links');
+$presencialCard = $xpath->query('//*[@id="planos"]//*[contains(concat(" ", normalize-space(@class), " "), " presencial-card ")]');
+assert_contract($presencialCard !== false && $presencialCard->length === 1, 'in-person consultation card exists');
+assert_contract(str_contains($html, 'ATENDIMENTO PRESENCIAL'), 'presencial card contains ATENDIMENTO PRESENCIAL kicker');
+assert_contract(str_contains($html, 'Engenheiro Pedreira') && str_contains($html, 'Nova Iguaçu'), 'presencial card lists Engenheiro Pedreira and Nova Iguaçu locations');
+assert_contract(str_contains($html, 'AGENDAR CONSULTA PRESENCIAL'), 'presencial card contains AGENDAR CONSULTA PRESENCIAL CTA');
 $footerInstagram = $xpath->query('//footer//a[@href="https://www.instagram.com/nutri.leonery/"]');
 $footerIconButtons = $xpath->query('//footer//a[contains(concat(" ", normalize-space(@class), " "), " footer-icon-btn ")]');
 assert_contract($footerInstagram !== false && $footerInstagram->length === 1, 'footer contains official Instagram link');
@@ -149,7 +154,7 @@ assert_contract(is_file($root . '/public/assets/images/devstep-logo.png'), 'devs
 // Break caught: generic diagonal arrows return or WhatsApp CTAs lose their distinct chat cue.
 assert_contract(!str_contains($html . $privacy, '↗'), 'diagonal arrow glyphs are absent');
 $whatsappLinks = $xpath->query('//*[@data-whatsapp-context and @data-whatsapp-context!="floating"]');
-assert_contract($whatsappLinks !== false && $whatsappLinks->length === 10, 'ten text WhatsApp conversion links');
+assert_contract($whatsappLinks !== false && $whatsappLinks->length === 11, 'eleven text WhatsApp conversion links');
 foreach ($whatsappLinks as $link) {
     $icons = $xpath->query('.//*[contains(concat(" ", normalize-space(@class), " "), " cta-icon ")]', $link);
     assert_contract($icons !== false && $icons->length === 1, 'each text WhatsApp CTA has one chat icon');
