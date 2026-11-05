@@ -301,7 +301,10 @@ h2, h3, p { margin-top: 0; }
 .faq-question span { width: 32px; height: 32px; flex: 0 0 32px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 10px; background: rgba(8, 124, 255, .12); color: var(--blue-light); font-size: 20px; font-weight: 500; line-height: 1; }
 .faq-answer { overflow: hidden; }
 .faq-answer:not([hidden]) { animation: faq-answer-in .25s ease both; }
-.faq-answer p { max-width: 680px; margin: 0; padding: 0 20px 22px 0; border-top: 1px solid var(--border); padding-top: 16px; color: var(--text-secondary); font-size: 14.5px; line-height: 1.65; }
+.faq-answer p, .faq-answer ul { max-width: 680px; margin: 0; padding: 0 20px 22px 0; border-top: 1px solid var(--border); padding-top: 16px; color: var(--text-secondary); font-size: 14.5px; line-height: 1.65; }
+.faq-answer ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.faq-answer ul li { position: relative; padding-left: 18px; }
+.faq-answer ul li::before { content: '•'; position: absolute; left: 0; color: var(--blue-light); font-weight: 700; }
 @keyframes faq-answer-in { from { opacity: 0; transform: translateY(-7px); } to { opacity: 1; transform: translateY(0); } }
 
 .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
